@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: region_nation
+    description: Regions and Nations defined from stg_region and stg_nation
+    columns:
+      - name: nation_id
+        description: primary key
+        tests:
+          - unique
+          - not_null
+      - name: REGION_NAME
+        description: only region values
+        tests:
+          - accepted_values:
+              values: ['AFRICA', 'AMERICA', 'ASIA', 'EUROPE', 'MIDDLE EAST']
+  
+  - name: stg_region
+    description: staged region table
+    columns:
+      - name: R_REGIONKEY
+        description: primary key
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_nation
+    description: staged nation table
+    columns:
+      - name: N_NATIONKEY
+        description: primary key
+        tests:
+          - unique
+          - not_null
+
+      - name: N_REGIONKEY
+        tests:
+          - relationships:
+              to: ref('stg_region')
+              field: R_REGIONKEY
+
+
+
+
+
