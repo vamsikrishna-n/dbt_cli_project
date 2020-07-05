@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: region_nation
-    description: Regions and Nations defined from stg_region and stg_nation
+    description: Regions and Nations defined from stg_region and stg_nation tables
     columns:
       - name: nation_id
         description: primary key
